@@ -13,8 +13,7 @@ mongodb = PyMongo(app)
 @app.route('/get_movies')
 def get_movies():
     return 'Hello World....again...blah'
-    return render_template ("moviles.html", movies-mongo.db.movies.find)
-
+    
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
     port=int(os.environ.get('PORT')),
