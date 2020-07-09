@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<ul class="collapsible">
+
+    {% for movie in movies %}
+       <li>
+          <div class="collapsible-header"><i class="material-icons">movie</i>{{movie.movie_name}} - {{movie.movie_category}}</div>
+            <div class="collapsible-body"><span>{{movie.movie_year}}</span></div>
+        </li>
+    {% endfor %}
+
+{% endblock %}
