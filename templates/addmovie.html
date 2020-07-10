@@ -14,13 +14,13 @@
         </div>
     </div>
     <div class="col s12">
-    <select id="tracklistoutput" class="materialSelect">
+    <select id="movielistoutput" class="materialSelect">
       <option>TMDB movie list</option>
     </select>
     <label>Materialize Select</label>
   </div>
   <div class="row">
-                <button type="button" class="btn waves-effect waves-light" id="getlyrics">Add Movie
+                <button type="button" class="btn waves-effect waves-light" id="addmovieinfotoform">Add Movie
                 <i class="material-icons right">playlist_add</i>
 </div>
     <form action="{{ url_for('insert_movie') }}" method="POST" class="col s6">
@@ -28,6 +28,18 @@
             <div class="input-field col s12">
                 <input id="movie_name" name="movie_name" type="text" class="validate">
                 <label for="movie_name">Movie Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="movie_releasedate" type="text" name="movie_releasedate" class="datepicker">
+                <label>Movie Release Date</label>
+            </div>
+        </div>
+                <div class="row">
+            <div class="input-field col s12">
+                <input id="movie_overview" name="movie_overview" type="text" class="validate">
+                <label for="movie_overview">Movie overview</label>
             </div>
         </div>
         <div class="row">
@@ -42,12 +54,6 @@
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s12">
-                <input type="text" name="movie_year" class="datepicker">
-                <label for="disabled">Date</label>
-            </div>
-        </div>
-        <div class="row">
             <button class="btn waves-effect waves-light" type="submit">Add Movie
                 <i class="material-icons right">playlist_add</i>
              </button>
@@ -55,8 +61,5 @@
     </form>
  
 </div>     
-  
-
-
 
 {% endblock %}

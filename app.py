@@ -26,6 +26,12 @@ def insert_movie():
     movies.insert_one(request.form.to_dict())
     return redirect(url_for('get_movies'))
 
+@app.route('/movie_admin/<movie_id>')
+def movie_admin(movie_id):
+    themovie = mongo.db.movie_list.find_one({"_id": ObjectId(movie_id)})
+    all_categories = mongo.db.movie_category.find()
+    return render_template("movieadmin.html", movie=themovie, category=all_categories, categories=mongo.db.movie_category.find())
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
     port=int(os.environ.get('PORT')),

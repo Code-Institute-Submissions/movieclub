@@ -4,10 +4,16 @@
 <ul class="collapsible">
 
     {% for movie in movies %}
+    
        <li>
-          <div class="collapsible-header"><i class="material-icons">movie</i>{{movie.movie_name}} - {{movie.movie_category}}</div>
-            <div class="collapsible-body"><span>{{movie.movie_year}}</span></div>
+          <div class="collapsible-header">
+            <div class="col s9">
+                <i class="material-icons">movie</i>{{movie.movie_name}} - {{movie.movie_releasedate}} - {{movie.movie_category}}</div>
+            <div class="col s3">
+                <a href="{{ url_for('movie_admin', movie_id=movie._id) }}" class="btn waves-effect waves-light">Admin</a>
+            </div>
+          </div>
+          <div class="collapsible-body"><span>{{movie.movie_overview}}</span></div>
         </li>
     {% endfor %}
-
 {% endblock %}

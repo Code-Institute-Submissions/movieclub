@@ -10,30 +10,33 @@ $(document).ready(function () {
     $(this).formSelect();
     });
 
-    function getlyrics(){
+    function addmovieinfotoform(){
 
-        //The track information is retrieved from the selected item in the select element dropdown list in the readit html page
-        var newtrackid = document.getElementById("tracklistoutput").value;
+        //The movie information is retrieved from the selected item in the select element dropdown list in the addmovie html page
+        var movietoaddtodb = document.getElementById("movielistoutput").value;
 
         //The track details are extracked from the track information and the track id is used in an api request to the musixmatch site
-        var track_name = newtrackid.split('>')[0];
-        console.log(track_name)
-        var artist_name = newtrackid.split('>')[1];
-        console.log(artist_name)
-        var album_name = newtrackid.split('>')[2];
-        console.log(album_name)
-        var newtrack = document.getElementById("movie_name")
-        newtrack.innerHTML = track_name;
-        newtrack.value = track_name;
-        newtrack.text = track_name;
-        //var newartist = document.getElementById("movie_category")
-        //newartist.innerHTML = artist_name;
-    
+        var movie_name = movietoaddtodb.split('>')[0];
+        movie_name = movie_name.trim()
+        var movie_releasedate = movietoaddtodb.split('>')[1];
+        movie_releasedate = movie_releasedate.trim()
+        var movie_overview = movietoaddtodb.split('>')[2];
+        movie_overview = movie_overview.trim()
+        var add_movie_name = document.getElementById("movie_name")
+        add_movie_name.value = movie_name;
+        var add_movie_releasedate = document.getElementById("movie_releasedate")
+        add_movie_releasedate.value = movie_releasedate;
+        var add_movie_overview = document.getElementById("movie_overview")
+        add_movie_overview.value = movie_overview;
+        //Required to update the labels on the html page: Materialise documentation:
+        //You can also call the function M.updateTextFields(); to reinitialize all the Materialize labels
+        // on the page if you are dynamically adding inputs.
+        M.updateTextFields();
     }
 
-    //The gettracklist callback function contains the get request to the musixmatch song lyrics api website
+    //The getmovielist callback function contains the get request to the musixmatch song lyrics api website
     //It contains a callback to facilitate passing the output of the web request to the outputtracklisttohtml function
-    function gettracklist(callback) {
+    function getmovielist(callback) {
         "use strict";
 
         //Get the searchcriteria from the search input field in the readit html page
@@ -55,51 +58,40 @@ $(document).ready(function () {
     }
 
     //The following submitsearch event is activated when a user clicks on the Search button to search for a song/track on the readit html page
-    //The outputtracklist function run and it calls the gettracklist callback function to get the songs/tracks and return them to the readit html page
+    //The outputtracklist function run and it calls the getmovielist callback function to get the songs/tracks and return them to the readit html page
 
-    $("#submitsearch").click(function outputtracklisttohtml() {
+    $("#submitsearch").click(function outputmovielisttohtml() {
 
-        //call the gettracklist function and pass the embedded function to the gettracklist function
-        gettracklist(function(data) {
+        //call the getmovielist function and pass the embedded function to the getmovielist function
+        getmovielist(function(data) {
             
             //The tracklist is the following subset of the api request response JSON
-            var tracklistlength = data.results;
-            console.log("output tracklist length");
-            console.log(tracklistlength);
-            console.log(tracklistlength.length);
-            console.log("output tracklist");
+            var movielist = data.results;
             console.log(data);
 
             //The select is used to facilitate the tracks being returned as a dropdown list in the readit html page
-            var select = document.getElementById("tracklistoutput");
+            var select = document.getElementById("movielistoutput");
             select.innerHTML = ""
             
-            for(var i = 0; i < tracklistlength.length; i++) {
+            for(var i = 0; i < movielist.length; i++) {
                     var opt = data.results[i];
+                    //Movie data is contatenated and returned to the dropdown list
+                    var movie_title = opt.title;
+                    var movie_releasedate = opt.release_date;
+                    var movie_overview = opt.overview;
+                    var trackinfo = movie_title + "     >" + movie_releasedate + "    >" + movie_overview;
                     //An element is created to contain the track details for each track returned to the readit html page
                     var el = document.createElement("option");
-                    //A number of track fields are selected and contatenated to return to the dropdown list of tracks
-                    var trname = opt.title;
-                    var trid = opt.release_date;
-                    var artist = opt.overview;
-                    var trackinfo = trname + "     >" + artist + "    >" + trid;
-                    //var trackinfo = trname + "     >" + trid;
-                    console.log("trackinfo")
-                    console.log(trackinfo)
                     el.innerHTML = trackinfo;
                     //Once the data has been assembled it is returned to the html page by the new element being appended to the select element
                     select.appendChild(el);
-                    console.log(el);
-                    console.log(select);
-                    $("#tracklistoutput").trigger('contentChanged');
-                    
+                    //console.log(el);
+                    //console.log(select);
+                    $("#movielistoutput").trigger('contentChanged');
             }
     });
-    });
-    
-
-        $("#getlyrics").click(getlyrics);
+    }); 
+        
+    $("#addmovieinfotoform").click(addmovieinfotoform);
 
 });
-
-
