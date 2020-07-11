@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="row">
-    <form action="{{ url_for('movie_admin', movie_id=movie._id) }}" method="POST" class="col s6">
+    <form action="{{ url_for('insert_admin_movie_update', movie_id=movie._id) }}" method="POST" class="col s6">
         <div class="row">
             <div class="input-field col s12">
                 <input id="movie_name" name="movie_name" type="text" class="validate" value="{{movie.movie_name}}">
@@ -21,7 +21,6 @@
                 <label for="movie_overview">Movie overview</label>
             </div>
         </div>
-
         <div class="row">
             <div class="input-field col s12">
                 <select name="movie_category">
@@ -38,9 +37,27 @@
             </div>
         </div>
         <div class="row">
-            <button class="btn waves-effect waves-light" type="submit">Add Movie
+            <div class="input-field col s12">
+                <input id="movie_reviewdate" type="text" name="movie_reviewdate" class="datepicker">
+                <label>Movie Review Date</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="switch">
+                <label>
+                    {% if movie.has_been_reviewed %}
+                          <input id="movie_has_been_reviewed" name="movie_has_been_reviewed" type="checkbox" checked>
+                    {% else %}
+                         <input id="movie_has_been_reviewed" name="movie_has_been_reviewed" type="checkbox">
+                    {% endif%}
+                  <span class="lever"></span>
+                  Has Been Reviewed
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn waves-effect waves-light" type="submit">Update Movie
                 <i class="material-icons right">playlist_add</i>
              </button>
-        </div>
         </div>
 {% endblock %}
