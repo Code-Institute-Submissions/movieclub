@@ -68,15 +68,17 @@ def admin_movie_remove(movie_id):
     return redirect(url_for('get_movies'))
 
     
-@app.route("/movie_review_comments")
-def movie_review_comments():
-    movie_comments = mongo.db.movie_review_comments.find()
-    return render_template("movie_review_comments.html", movie_comments=movie_comments)
+@app.route("/movie_review_comments/<movie_id>")
+def movie_review_comments(movie_id):
+    movie = mongo.db.movie_list.find_one({"_id": ObjectId(movie_id)})
+    movie_name = movie.get('movie_name')
+    movie_comments = mongo.db.movie_review_comments.find({"movie_name": movie_name})
+    return render_template("movie_review_comments.html", movie=movie, movie_comments=movie_comments)
 
 
 @app.route("/insert_movie_review_comments", methods=['POST', 'GET'])
 def insert_movie_review_comments():
-    movie_comments = mongo.db.movie_review_comments.find()
+    movies = mongo.db.movie_review_comments
     return redirect(url_for('movie_review_comments'))
 
 

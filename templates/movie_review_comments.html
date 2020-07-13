@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
+    <h2>movie review comments</h2>
+    {{movie.movie_name}}
     {% for comments in movie_comments %}
     <div>Movie: {{comments.movie_name}} - Comments: {{comments.movie_comments}}</div>
-    {% endfor %}
-    <a href="{{ url_for('inser_movie_review_comments', movie_id=movie._id) }}" class="btn waves-effect waves-light">Movie Review Comments</a>
+    {% endfor %}   
 {% endblock %}
