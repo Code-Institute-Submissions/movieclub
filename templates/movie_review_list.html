@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<ul class="collapsible">
+
+<h2>Upcoming movie views reviews</h2>
+    {% for movie in movies %}
+        {% if movie.movie_reviewdate >= current_date %}       
+       <li>
+       
+          <div class="collapsible-header">
+            <div class="col s9">
+                <i class="material-icons">movie</i>{{movie.movie_name}} - {{movie.movie_releasedate}} - {{movie.movie_category}}</div>
+            </div>
+          <div class="collapsible-body">
+          <span>{{movie.movie_overview}}</span>
+          <div class="col s9">
+          Review Date: {{movie.movie_reviewdate}} - Review Completed {{movie.movie_has_been_reviewed}}</div>
+          <a href="{{ url_for('admin_movie_update', movie_id=movie._id) }}" class="btn waves-effect waves-light">Admin Update</a>
+          <a href="{{ url_for('admin_movie_remove', movie_id=movie._id) }}" class="btn waves-effect waves-light">Admin Remove</a>
+          </div>
+        </li>
+         {% endif %}
+        {% endfor %}
+
+<h2>Previous Movie reviews</h2> 
+    {% for movie in movies2 %}
+        {% if movie.movie_reviewdate < current_date %}     
+         
+       <li>
+          <div class="collapsible-header">
+            <div class="col s9">
+                <i class="material-icons">movie</i>{{movie.movie_name}} - {{movie.movie_releasedate}} - {{movie.movie_category}}</div>
+            </div>
+          <div class="collapsible-body">
+          <span>{{movie.movie_overview}}</span>
+          <div class="col s9">
+          Review Date: {{movie.movie_reviewdate}} - Review Completed {{movie.movie_has_been_reviewed}}</div>
+          <a href="{{ url_for('admin_movie_update', movie_id=movie._id) }}" class="btn waves-effect waves-light">Admin Update</a>
+          <a href="{{ url_for('admin_movie_remove', movie_id=movie._id) }}" class="btn waves-effect waves-light">Admin Remove</a>
+          <a href="{{ url_for('movie_review_comments', movie_id=movie._id) }}" class="btn waves-effect waves-light">Movie Review Comments</a>
+          </div>
+        </li>
+         {% endif %}
+        {% endfor %}
+
+        </ul>
+{% endblock %}

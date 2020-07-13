@@ -7,8 +7,9 @@
     <body>
         <nav>
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo right">Logo</a>
+                <a href="{{url_for('get_movies')}}" class="brand-logo right">Movie Review Club</a>
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><a href="{{url_for('show_movie_review_list')}}">Movie REeiews</a></li>
                     <li><a href="{{url_for('get_movies')}}">Movies</a></li>
                     <li><a href="{{url_for('add_movie')}}">Add Movie</a></li>
                 </ul>
