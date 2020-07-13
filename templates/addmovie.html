@@ -1,65 +1,47 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<div class="row">
-   <div class="row">
-        <div class="row">
-            <h3>Search the Movie Database (TMDB) to add a movie, or enter the details below:</h3>
-        </div>
-        <div class="row">
-            <p><input type="text" id="search" placeholder="Enter Movie Name to search TMDB, and click the Search button..." autocomplete="off" class="readitpagebuttons"/></p>
-        </div>
-        <div class="row">
-            <button type="button" id="submitsearch" class="readitpagebuttonssmall" value="Search">Search</button>
+    <div>
+        <br>
+    </div>
+    <div class="white section col s12">
+        <div class="col s10 offset-s1">
+            <h5>Search the Movie Database (TMDB) to add a movie, or type in the details below:</h5>
+            <p><input type="text" id="search" placeholder="Enter Movie Name to search TMDB, and click the Search button..." autocomplete="off"/></p>
+            <button type="button" id="submitsearch" class="readitpagebuttonssmall" value="Search">Search
+                <i class="material-icons right">playlist_add</i>
+            </button><br><br>
+            <select id="movielistoutput" class="materialSelect">
+                <option>Select movie</option>
+            </select><br>
+            <button type="button" class="btn waves-effect waves-light" id="addmovieinfotoform">Add TMDB Movie Results
+                <i class="material-icons right">playlist_add</i>
+            </button><br>
+            <form action="{{ url_for('insert_movie') }}" method="POST">
+                <div class="input-field">
+                    <input id="movie_name" name="movie_name" type="text" class="validate">
+                    <label for="movie_name">Movie Name</label>
+                </div>
+                <div class="input-field">
+                    <input id="movie_releasedate" type="text" name="movie_releasedate" class="datepicker">
+                    <label>Movie Release Date</label>
+                </div> 
+                <div class="input-field">
+                    <input id="movie_overview" name="movie_overview" type="text" class="validate">
+                    <label for="movie_overview">Movie overview</label>
+                </div>
+                <div class="input-field">
+                    <select name="movie_category">
+                        <option disabled selected>Select a movie category</option>
+                        {% for category in categories %}
+                        <option>{{category.category_name}}</option>
+                        {% endfor %}
+                    </select>
+                    <label>Movie Category</label><br>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit">Add Movie to the Movie Club Database
+                    <i class="material-icons right">playlist_add</i>
+                </button>
+            </form>
         </div>
     </div>
-    <div class="col s12">
-    <select id="movielistoutput" class="materialSelect">
-      <option>TMDB movie list</option>
-    </select>
-    <label>Materialize Select</label>
-  </div>
-  <div class="row">
-                <button type="button" class="btn waves-effect waves-light" id="addmovieinfotoform">Add Movie
-                <i class="material-icons right">playlist_add</i>
-</div>
-    <form action="{{ url_for('insert_movie') }}" method="POST" class="col s6">
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="movie_name" name="movie_name" type="text" class="validate">
-                <label for="movie_name">Movie Name</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="movie_releasedate" type="text" name="movie_releasedate" class="datepicker">
-                <label>Movie Release Date</label>
-            </div>
-        </div>
-                <div class="row">
-            <div class="input-field col s12">
-                <input id="movie_overview" name="movie_overview" type="text" class="validate">
-                <label for="movie_overview">Movie overview</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <select name="movie_category">
-                    <option disabled selected>Choose your option</option>
-                    {% for category in categories %}
-                    <option>{{category.category_name}}</option>
-                    {% endfor %}
-                </select>
-                <label>Movie Category</label>
-            </div>
-        </div>
-        <div class="row">
-            <button class="btn waves-effect waves-light" type="submit">Add Movie
-                <i class="material-icons right">playlist_add</i>
-             </button>
-        </div>
-    </form>
- 
-</div>     
-
 {% endblock %}

@@ -1,21 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="row">
-    <div class="col s12">
-        <div class="col s10 offset-s1">
-            <ul class="collapsible">
-                {% for movie in movies %}
-                    <li>
-                        <div class="collapsible-header">
+    <ul class="collapsible">
+        {% for movie in movies %}
+            <li>
+                <div class="collapsible-header">
                             <i class="material-icons" >movie</i><span class="blue-text text-darken-2"><h6>{{movie.movie_name}} - {{movie.movie_releasedate}} - {{movie.movie_category}}</h6></span>
                         </div>
-                        <div class="collapsible-body">
+                        <div class="collapsible-body white">
                             <h5>Movie Overview:</h5></br>
                             <p>{{movie.movie_overview}}</br>
                             <div class="divider"></div></br>
                             <h5>Movie Links:</h5></br>
-                            <a href>{{movie.movie_urls}}</a></br></br>
+                            {% if not movie.movie_urls %}
+                                <p>No links have been added</p>
+                            {% else %}
+                                <a href>{{movie.movie_urls}}</a></br></br>
+                            {% endif %}
                             <div class="divider"></div></br>
                             Movie has been reviewed: {{movie.movie_has_been_reviewed}}</br></br>
                             Movie Review Date: {{movie.movie_reviewdate}}</br></br>
@@ -26,7 +27,5 @@
                     </li>
                 {% endfor %}
             </ul>
-        </div>
-    </div>
-</div>
+
 {% endblock %}
