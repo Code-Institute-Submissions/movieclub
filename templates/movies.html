@@ -1,21 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<ul class="collapsible">
-
-    {% for movie in movies %}
-       <li>
-          <div class="collapsible-header">
-            <div class="col s9">
-                <i class="material-icons">movie</i>{{movie.movie_name}} - {{movie.movie_releasedate}} - {{movie.movie_category}}</div>
-            </div>
-          <div class="collapsible-body">
-          <span>{{movie.movie_overview}}</span>
-          <div class="col s9">
-          Review Date: {{movie.movie_reviewdate}} - Review Completed {{movie.movie_has_been_reviewed}}</div>
-          <a href="{{ url_for('admin_movie_update', movie_id=movie._id) }}" class="btn waves-effect waves-light">Admin Update</a>
-          <a href="{{ url_for('admin_movie_remove', movie_id=movie._id) }}" class="btn waves-effect waves-light">Admin Remove</a>
-          </div>
-        </li>
-    {% endfor %}
+<div class="row">
+    <div class="col s12">
+        <div class="col s10 offset-s1">
+            <ul class="collapsible">
+                {% for movie in movies %}
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons" >movie</i><span class="blue-text text-darken-2"><h6>{{movie.movie_name}} - {{movie.movie_releasedate}} - {{movie.movie_category}}</h6></span>
+                        </div>
+                        <div class="collapsible-body">
+                            <h5>Movie Overview:</h5></br>
+                            <p>{{movie.movie_overview}}</br>
+                            <div class="divider"></div></br>
+                            <h5>Movie Links:</h5></br>
+                            <a href>{{movie.movie_urls}}</a></br></br>
+                            <div class="divider"></div></br>
+                            Movie has been reviewed: {{movie.movie_has_been_reviewed}}</br></br>
+                            Movie Review Date: {{movie.movie_reviewdate}}</br></br>
+                            <div class="divider"></div></br>
+                            <a href="{{ url_for('admin_movie_update', movie_id=movie._id) }}" class="btn waves-effect waves-light">Admin Update</a>
+                            <a href="{{ url_for('admin_movie_remove', movie_id=movie._id) }}" class="btn waves-effect waves-light">Admin Remove</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
 {% endblock %}

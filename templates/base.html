@@ -9,8 +9,8 @@
             <div class="nav-wrapper">
                 <a href="{{url_for('get_movies')}}" class="brand-logo right">Movie Review Club</a>
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li><a href="{{url_for('show_movie_review_list')}}">Movie REeiews</a></li>
-                    <li><a href="{{url_for('get_movies')}}">Movies</a></li>
+                    <li><a href="{{url_for('show_movie_review_list')}}">Movie Reviews</a></li>
+                    <li><a href="{{url_for('get_movies')}}">Movie Review Database</a></li>
                     <li><a href="{{url_for('add_movie')}}">Add Movie</a></li>
                 </ul>
             </div>
@@ -21,9 +21,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="{{ url_for('static', filename='js/moviedb.js') }}"></script>
         <script type="text/javascript">
-            $(document).ready(function(){
-                $('.collapsible').collapsible();
-            });
              $(document).ready(function(){
                 $('.datepicker').datepicker({
                     format: 'dd-mm-yyyy',
@@ -33,13 +30,10 @@
                     changeYear: true,
                     yearRange: 100,
                 });
-            });
-             $(document).ready(function(){
+                $('.collapsible').collapsible();
                 $('select').formSelect();
-             });
-             $(document).ready(function(){
                 $('.dropdown-trigger').dropdown();
-             });
+            });
              
         </script>
     </body>

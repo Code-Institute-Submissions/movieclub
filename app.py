@@ -1,9 +1,7 @@
-
 import os
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-import urllib.request
 from datetime import datetime
 
 app = Flask(__name__)
@@ -57,7 +55,8 @@ def insert_admin_movie_update(movie_id):
         'movie_overview': request.form.get('movie_overview'),
         'movie_category': request.form.get('movie_category'),
         'movie_reviewdate': request.form.get('movie_reviewdate'),
-        'movie_has_been_reviewed': request.form.get('movie_has_been_reviewed')
+        'movie_has_been_reviewed': request.form.get('movie_has_been_reviewed'),
+        'movie_urls': request.form.get('movie_urls')
     })
     return redirect(url_for('get_movies'))
 
@@ -76,11 +75,14 @@ def movie_review_comments(movie_id):
     return render_template("movie_review_comments.html", movie=movie, movie_comments=movie_comments)
 
 
-@app.route("/insert_movie_review_comments", methods=['POST', 'GET'])
-def insert_movie_review_comments():
-    movies = mongo.db.movie_review_comments
-    return redirect(url_for('movie_review_comments'))
-
+@app.route("/insert_movie_review_comments/<movie_id>", methods=['POST', 'GET'])
+def insert_movie_review_comments(movie_id):
+    movie_review_comments = mongo.db.movie_review_comments
+    movie_review_comments.insert_one(request.form.to_dict())
+    movie = mongo.db.movie_list.find_one({"_id": ObjectId(movie_id)})
+    movie_name = movie.get('movie_name')
+    movie_comments = mongo.db.movie_review_comments.find({"movie_name": movie_name})
+    return render_template("movie_review_comments.html", movie=movie, movie_comments=movie_comments)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'), port=int(os.environ.get('PORT')), 
