@@ -1,48 +1,68 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<ul class="collapsible">
-
-<h2>Upcoming movie views reviews</h2>
-    {% for movie in movies %}
-        {% if movie.movie_reviewdate >= current_date %}       
-       <li>
-       
-          <div class="collapsible-header">
-            <div class="col s9">
-                <i class="material-icons">movie</i>{{movie.movie_name}} - {{movie.movie_releasedate}} - {{movie.movie_category}}</div>
-            </div>
-          <div class="collapsible-body">
-          <span>{{movie.movie_overview}}</span>
-          <div class="col s9">
-          Review Date: {{movie.movie_reviewdate}} - Review Completed {{movie.movie_has_been_reviewed}}</div>
-          <a href="{{ url_for('admin_movie_update', movie_id=movie._id) }}" class="btn waves-effect waves-light">Admin Update</a>
-          <a href="{{ url_for('admin_movie_remove', movie_id=movie._id) }}" class="btn waves-effect waves-light">Admin Remove</a>
-          </div>
-        </li>
-         {% endif %}
-        {% endfor %}
-
-<h2>Previous Movie reviews</h2> 
-    {% for movie in movies2 %}
-        {% if movie.movie_reviewdate < current_date %}     
-         
-       <li>
-          <div class="collapsible-header">
-            <div class="col s9">
-                <i class="material-icons">movie</i>{{movie.movie_name}} - {{movie.movie_releasedate}} - {{movie.movie_category}}</div>
-            </div>
-          <div class="collapsible-body">
-          <span>{{movie.movie_overview}}</span>
-          <div class="col s9">
-          Review Date: {{movie.movie_reviewdate}} - Review Completed {{movie.movie_has_been_reviewed}}</div>
-          <a href="{{ url_for('admin_movie_update', movie_id=movie._id) }}" class="btn waves-effect waves-light">Admin Update</a>
-          <a href="{{ url_for('admin_movie_remove', movie_id=movie._id) }}" class="btn waves-effect waves-light">Admin Remove</a>
-          <a href="{{ url_for('movie_review_comments', movie_id=movie._id) }}" class="btn waves-effect waves-light">Movie Review Comments</a>
-          </div>
-        </li>
-         {% endif %}
-        {% endfor %}
-
+<div class="white col s12">
+    <div class="col s10 offset-s1">
+        <div class="container"><br>
+            <img class="responsive-img" src="{{ url_for('static', filename='images/site_heading.png') }}">    
+        </div>
+        <br><br>
+        <span><img class="responsive-img" src="{{ url_for('static', filename='images/star.png') }}"></span>
+        <span class="homepage_notices">Join our Watch Parties, or organise your own using our Moview Database!</span><br>
+        <span><img class="responsive-img" src="{{ url_for('static', filename='images/star.png') }}"></span>
+        <span class="homepage_notices">Add your thoughts and comments to our Moview Review section!</span>
+        <h4 class="review_headings">Upcoming Movie Watch and Review Events:</h4><br>
+        <ul class="collapsible">
+            {% for movie in movies %}
+                {% if movie.movie_reviewdate >= current_date %}  
+                    <li>
+                        <div class="collapsible-header">
+                                <i class="material-icons" >movie</i><span class="blue-text text-darken-2"><h6>{{movie.movie_name}} - {{movie.movie_releasedate}} - {{movie.movie_category}}</h6></span>
+                        </div>
+                        <div class="collapsible-body">
+                            <h5>Movie Overview:</h5></br>
+                            <p>{{movie.movie_overview}}</p></br>
+                            <div class="divider"></div></br>
+                            <h5>Movie Links:</h5></br>
+                            {% if not movie.movie_urls %}
+                                <p>No links have been added</p>
+                            {% else %}
+                                <a href>{{movie.movie_urls}}</a></br></br>
+                            {% endif %}
+                            <div class="divider"></div></br>
+                                Movie has been reviewed: {{movie.movie_has_been_reviewed}}</br></br>
+                                Movie Review Date: {{movie.movie_reviewdate}}</br></br>
+                        </div>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <h4 class="review_headings">Previous Movie Reviews</h4><br>
+        <ul class="collapsible">
+            {% for movie in movies2 %}
+                {% if movie.movie_reviewdate < current_date %}     
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons" >movie</i><span class="blue-text text-darken-2"><h6>{{movie.movie_name}} - {{movie.movie_releasedate}} - {{movie.movie_category}}</h6></span>
+                        </div>
+                        <div class="collapsible-body">
+                            <h5>Movie Overview:</h5></br>
+                            <p>{{movie.movie_overview}}</p></br>
+                            <div class="divider"></div></br>
+                            <h5>Movie Links:</h5></br>
+                            {% if not movie.movie_urls %}
+                                <p>No links have been added</p>
+                            {% else %}
+                                <a href>{{movie.movie_urls}}</a></br></br>
+                            {% endif %}
+                            <div class="divider"></div></br>
+                                Movie has been reviewed: {{movie.movie_has_been_reviewed}}</br></br>
+                                Movie Review Date: {{movie.movie_reviewdate}}</br></br>
+                            <div class="divider"></div></br>
+                            <a href="{{ url_for('movie_review_comments', movie_id=movie._id) }}" class="btn waves-effect waves-light">Movie Review Comments</a>
+                        </div>
+                    </li>
+                {% endif %}
+            {% endfor %}
         </ul>
 {% endblock %}

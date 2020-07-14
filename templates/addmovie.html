@@ -7,15 +7,15 @@
         <div class="col s10 offset-s1">
             <h5>Search the Movie Database (TMDB) to add a movie, or type in the details below:</h5>
             <p><input type="text" id="search" placeholder="Enter Movie Name to search TMDB, and click the Search button..." autocomplete="off"/></p>
-            <button type="button" id="submitsearch" class="readitpagebuttonssmall" value="Search">Search
-                <i class="material-icons right">playlist_add</i>
+            <button type="button" id="submitsearch" class="btn waves-effect waves-light" value="Search">Search
+                <i class="material-icons right">search</i>
             </button><br><br>
             <select id="movielistoutput" class="materialSelect">
                 <option>Select movie</option>
             </select><br>
             <button type="button" class="btn waves-effect waves-light" id="addmovieinfotoform">Add TMDB Movie Results
                 <i class="material-icons right">playlist_add</i>
-            </button><br>
+            </button><br><br>
             <form action="{{ url_for('insert_movie') }}" method="POST">
                 <div class="input-field">
                     <input id="movie_name" name="movie_name" type="text" class="validate">
@@ -41,6 +41,7 @@
                 <button class="btn waves-effect waves-light" type="submit">Add Movie to the Movie Club Database
                     <i class="material-icons right">playlist_add</i>
                 </button>
+                <br><br><br>
             </form>
         </div>
     </div>

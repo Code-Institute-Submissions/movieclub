@@ -3,8 +3,11 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
     </head>
-    <body>
+    <body class="teal lighten-1">
         <nav>
             <div class="nav-wrapper">
                 <a href="{{url_for('get_movies')}}" class="brand-logo right">Movie Review Club</a>
@@ -14,11 +17,12 @@
                     <li><a href="{{url_for('add_movie')}}">Add Movie</a></li>
                 </ul>
             </div>
-
-            
-                <img class="responsive-img" src="{{ url_for('static', filename='images/moviespic2.jpg') }}">
-            
- 
+        </nav>
+        <div class="row teal lighten-1">
+            <div class="col s12">
+                <img class="responsive-img" src="{{ url_for('static', filename='images/moviespic2.jpg') }}">    
+            </div>
+        </div>
         <div class="row teal lighten-1">
             <div class="col s12">
                 <div class="col s10 offset-s1">
