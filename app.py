@@ -84,6 +84,15 @@ def insert_movie_review_comments(movie_id):
     movie_comments = mongo.db.movie_review_comments.find({"movie_name": movie_name})
     return render_template("movie_review_comments.html", movie=movie, movie_comments=movie_comments)
 
+@app.route('/admin_delete_comment/<movie_id>/<comments_id>')
+def admin_delete_comment(movie_id, comments_id):
+    mongo.db.movie_review_comments.remove({'_id': ObjectId(comments_id)})
+    movie = mongo.db.movie_list.find_one({"_id": ObjectId(movie_id)})
+    movie_name = movie.get('movie_name')
+    movie_comments = mongo.db.movie_review_comments.find({"movie_name": movie_name})
+    return render_template("movie_review_comments.html", movie=movie, movie_comments=movie_comments)
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'), port=int(os.environ.get('PORT')), 
         debug=True)

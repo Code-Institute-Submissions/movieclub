@@ -7,3 +7,15 @@
     font-weight: bold;
     padding-top: 40px;
 }
+
+.hide_form {
+  display: none;
+}
+
+.table-responsive {
+   display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}

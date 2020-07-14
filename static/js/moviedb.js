@@ -1,5 +1,19 @@
 $(document).ready(function () {
 
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+
+    $("#addcomment_formfill").click(function() {
+        var x = document.getElementById("addcomment_form");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+        document.getElementById("movie_username").focus();
+    })
+
     // Fixes for issue where new select options are not selectable
     // https://jsfiddle.net/KyleMit/1gxqhvpa/
     // initialize

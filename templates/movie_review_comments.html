@@ -6,7 +6,7 @@
         <h2>Movie Watch and Review Comments</h2>
         <h4 class="review_headings">Comments for Movie: <span class="blue-text text-darken-2">{{movie.movie_name}}</span></h4>
         <div class="review_headings"></div>
-            <table>
+            <table class="responsive-table table-responsive">
                 <thead>
                     <tr>
                         <th>Username</th>
@@ -18,31 +18,34 @@
                         <tr>
                             <td>{{comments.movie_username}}</td>
                             <td>{{comments.movie_comment}}</td>
+                            <td>
+                            <a href="{{ url_for('admin_delete_comment', movie_id=movie._id, comments_id=comments._id) }}" class="btn waves-effect waves-light">Delete</a>
+                            </td>
+
                         </tr>
                     {% endfor %} 
                 </tbody>
             </table>  
         <div class="row review_headings">
-        <form action="{{ url_for('insert_movie_review_comments', movie_id=movie._id) }}" method="POST" class="col s6">
-            <button class="btn waves-effect waves-light ">Add Review Comment
+            <button id="addcomment_formfill" class="btn waves-effect waves-light">Add Review Comment
                 <i class="material-icons right">playlist_add</i>
             </button>
-            <div class="row review_headings">
-                  <table>        
-                <label for="username">movie_name</label>
-                <input id="movie_name" name="movie_name" type="text" class="validate" value={{movie.movie_name}}>
-                <label for="username">Username</label>
-                <input id="movie_username" name="movie_username" type="text" class="validate" value="">
-                <label for="comment">Movie Review Comment</label>
-                <input id="movie_comment" name="movie_comment" type="text" class="validate" value="">
-            </div>
-            <div class="row review_headings">
-                <button class="btn waves-effect waves-light" type="submit">Submit Comment
-                    <i class="material-icons right">playlist_add</i>
-                </button>
-            </div>
-        </form>
+        </div>
+        <div id="addcomment_form" class="row" style="display:none">
+            <form action="{{ url_for('insert_movie_review_comments', movie_id=movie._id) }}" method="POST" class="col s6">
+                <div class="row review_headings">      
+                    <label for="username">movie_name</label>
+                    <input id="movie_name" name="movie_name" type="text" class="validate" value="{{movie.movie_name}}">
+                    <label for="username">Username</label>
+                    <input id="movie_username" name="movie_username" type="text" class="validate" value="">
+                    <label for="comment">Movie Review Comment</label>
+                    <input id="movie_comment" name="movie_comment" type="text" class="validate" value=""><br><br>
+                    <button class="btn waves-effect waves-light" type="submit">Submit Comment
+                        <i class="material-icons right">playlist_add</i>
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
 {% endblock %}
