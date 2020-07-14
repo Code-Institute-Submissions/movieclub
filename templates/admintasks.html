@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="white col s12">
+    <div class="col s10 offset-s1">
+        <h4>Admin Tasks: Movie Categories</h4>
+        <h6>As Administrator, select Categories for deletion or add a new Movie Category using the buttons provided</h6>
+        <ul class="review_headings">
+        {% for category in categories %}
+            <li list-style-type: none>
+                <div class="row">
+                    <div class="col s6">
+                        {{category.category_name}}
+                    </div>
+                    <div class="col s6">
+                        <a href="{{ url_for('admin_delete_category', category_id=category._id) }}" class="btn waves-effect waves-light">Delete Category</a>
+                    </div>
+                </div>
+                <div class="divider"></div><br>
+            </li>
+        {% endfor %}
+        </ul>
+        <div class="row review_headings">
+            <button id="addcategory_formfill" class="btn waves-effect waves-light">Add Movie Category
+                <i class="material-icons right">playlist_add</i>
+            </button>
+        </div>
+        <div id="addcategory_form" class="row" style="display:none">
+            <form action="{{ url_for('insert_movie_category') }}" method="POST" class="col s6">
+                <div class="row review_headings">      
+                    <label for="category">New Movie Category</label>
+                    <input id="category_name" name="category_name" type="text" class="validate" value="">
+                    <button class="btn waves-effect waves-light" type="submit">Add Category
+                        <i class="material-icons right">playlist_add</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

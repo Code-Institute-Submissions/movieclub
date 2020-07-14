@@ -93,6 +93,24 @@ def admin_delete_comment(movie_id, comments_id):
     return render_template("movie_review_comments.html", movie=movie, movie_comments=movie_comments)
 
 
+@app.route('/admin_tasks', methods=['POST', 'GET'])
+def admin_tasks():
+    return render_template("admintasks.html", categories=mongo.db.movie_category.find())
+
+
+@app.route('/admin_delete_category/<category_id>')
+def admin_delete_category(category_id):
+    mongo.db.movie_category.remove({'_id': ObjectId(category_id)})
+    return redirect(url_for('admin_tasks'))
+
+
+@app.route('/insert_movie_category', methods=['POST', 'GET'])
+def insert_movie_category():
+    categories = mongo.db.movie_category
+    categories.insert_one(request.form.to_dict())
+    return redirect(url_for('admin_tasks'))
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'), port=int(os.environ.get('PORT')), 
         debug=True)

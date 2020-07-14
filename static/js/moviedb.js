@@ -14,6 +14,16 @@ $(document).ready(function () {
         document.getElementById("movie_username").focus();
     })
 
+    $("#addcategory_formfill").click(function() {
+        var x = document.getElementById("addcategory_form");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+        document.getElementById("category_name").focus();
+    })
+
     // Fixes for issue where new select options are not selectable
     // https://jsfiddle.net/KyleMit/1gxqhvpa/
     // initialize

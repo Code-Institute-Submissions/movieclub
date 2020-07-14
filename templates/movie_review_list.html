@@ -20,18 +20,18 @@
                                 <i class="material-icons" >movie</i><span class="blue-text text-darken-2"><h6>{{movie.movie_name}} - {{movie.movie_releasedate}} - {{movie.movie_category}}</h6></span>
                         </div>
                         <div class="collapsible-body">
-                            <h5>Movie Overview:</h5></br>
-                            <p>{{movie.movie_overview}}</p></br>
-                            <div class="divider"></div></br>
-                            <h5>Movie Links:</h5></br>
+                            <h5>Movie Overview:</h5><br>
+                            <p>{{movie.movie_overview}}</p><br>
+                            <div class="divider"></div><br>
+                            <h5>Movie Links:</h5><br>
                             {% if not movie.movie_urls %}
                                 <p>No links have been added</p>
                             {% else %}
-                                <a href>{{movie.movie_urls}}</a></br></br>
+                                <a href>{{movie.movie_urls}}</a><br><br>
                             {% endif %}
-                            <div class="divider"></div></br>
-                                Movie has been reviewed: {{movie.movie_has_been_reviewed}}</br></br>
-                                Movie Review Date: {{movie.movie_reviewdate}}</br></br>
+                            <div class="divider"></div><br>
+                                Movie has been reviewed: {{movie.movie_has_been_reviewed}}<br><br>
+                                Movie Review Date: {{movie.movie_reviewdate}}<br><br>
                         </div>
                     </li>
                 {% endif %}
