@@ -12,14 +12,21 @@
         <nav>
             <div class="nav-wrapper">
                 <a href="{{url_for('get_movies')}}" class="brand-logo right">Movie Review Club</a>
+                <a href="#" data-target="mobile_friendly" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li><a href="{{url_for('show_movie_review_list')}}">Movie Reviews</a></li>
+                    <li><a href="{{url_for('show_movie_review_list')}}">Movie Review Homepage</a></li>
                     <li><a href="{{url_for('get_movies')}}">Movie Review Database</a></li>
                     <li><a href="{{url_for('add_movie')}}">Add Movie</a></li>
                     <li><a href="{{url_for('admin_tasks')}}">Admin Tasks</a></li>
                 </ul>
             </div>
         </nav>
+        <ul class="sidenav" id="mobile_friendly">
+            <li><a href="{{url_for('show_movie_review_list')}}">Movie Review Homepage</a></li>
+            <li><a href="{{url_for('get_movies')}}">Movie Review Database</a></li>
+            <li><a href="{{url_for('add_movie')}}">Add Movie</a></li>
+            <li><a href="{{url_for('admin_tasks')}}">Admin Tasks</a></li>
+        </ul>
         <div class="row teal lighten-1">
             <div class="col s12 center">
                 <img class="responsive-img center" src="{{ url_for('static', filename='images/moviespic2.jpg') }}">    
@@ -39,7 +46,6 @@
              $(document).ready(function(){
                 $('.datepicker').datepicker({
                     format: 'dd-mm-yyyy',
-                    maxDate: new Date(),
                     selectMonths: true,
                     changeMonth: true,
                     changeYear: true,
@@ -48,6 +54,7 @@
                 $('.collapsible').collapsible();
                 $('select').formSelect();
                 $('.dropdown-trigger').dropdown();
+                $('.sidenav').sidenav();
             });
              
         </script>

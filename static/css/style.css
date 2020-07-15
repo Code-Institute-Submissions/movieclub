@@ -15,3 +15,11 @@
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
 }
+
+.sidenav {
+  background-color: #fda093 !important;
+}
+#lower_image { 
+    vertical-align: bottom;
+    display: table-cell;
+}

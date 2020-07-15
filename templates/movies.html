@@ -18,8 +18,23 @@
                         <a href>{{movie.movie_urls}}</a><br><br>
                     {% endif %}
                     <div class="divider"></div><br>
-                    Movie has been reviewed: {{movie.movie_has_been_reviewed}}<br><br>
-                    Movie Review Date: {{movie.movie_reviewdate}}<br><br>
+                    <div class="switch">
+                        <label>
+                        {% if movie.movie_has_been_reviewed %}
+                              <input id="movie_has_been_reviewed" name="movie_has_been_reviewed" type="checkbox" checked>
+                        {% else %}
+                             <input id="movie_has_been_reviewed" name="movie_has_been_reviewed" type="checkbox">
+                        {% endif%}
+                        <span class="lever"></span>
+                        Has Been Reviewed
+                        </label>
+                    </div><br><br>
+                    Movie Review Date: 
+                    {% if movie.movie_reviewdate %}
+                        {{movie.movie_reviewdate}}<br><br>
+                    {% else %}
+                        No review date has been set for this movie<br><br>
+                    {% endif%}
                     <div class="divider"></div><br>
                     <a href="{{ url_for('admin_movie_update', movie_id=movie._id) }}" class="btn waves-effect waves-light">Admin Update</a>
                     <a href="{{ url_for('admin_movie_remove', movie_id=movie._id) }}" class="btn waves-effect waves-light">Admin Remove</a>

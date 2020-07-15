@@ -3,16 +3,34 @@
 
 <div class="white col s12">
     <div class="col s10 offset-s1">
-        <div class="container"><br>
-            <img class="responsive-img" src="{{ url_for('static', filename='images/site_heading.png') }}">    
+        <h3 class="review_headings center">Watch and Review Great Movies!</h3><br><br>
+        <div class="row">
+            <div class="col s1">
+                <img class="responsive-img lower_image" style="vertical-align: bottom" src="{{ url_for('static', filename='images/star.png') }}">
+            </div>
+            <div class="col s11">
+                <h6>Join our Watch Parties, and watch the great movies in our Movie Database!</h6>
+            </div>
         </div>
-        <br><br>
-        <span><img class="responsive-img" src="{{ url_for('static', filename='images/star.png') }}"></span>
-        <span class="homepage_notices">Join our Watch Parties, or organise your own using our Moview Database!</span><br>
-        <span><img class="responsive-img" src="{{ url_for('static', filename='images/star.png') }}"></span>
-        <span class="homepage_notices">Add your thoughts and comments to our Moview Review section!</span>
+        <div class="row">
+            <div class="col s1">
+                <img class="responsive-img" src="{{ url_for('static', filename='images/star.png') }}">
+            </div>
+            <div class="col s11">
+                <h6>Add your thoughts and comments to our Moview Reviews!</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s1">
+                <img class="responsive-img" src="{{ url_for('static', filename='images/star.png') }}">
+            </div>
+            <div class="col s11">
+                <h6>Suggest movies for review using the Add Movie option!</h6>
+            </div>
+        </div>
         <h4 class="review_headings">Upcoming Movie Watch and Review Events:</h4><br>
         <ul class="collapsible">
+        console.log({{current_date}})
             {% for movie in movies %}
                 {% if movie.movie_reviewdate >= current_date %}  
                     <li>

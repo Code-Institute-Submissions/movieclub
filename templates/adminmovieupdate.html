@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<div class="row">
+<div class="white section col s12">
+        <div class="col s10 offset-s1">
+<h5>Update the movie details in the database using the following fields:</h5>    
+<div class="row review_headings">
     <form action="{{ url_for('insert_admin_movie_update', movie_id=movie._id) }}" method="POST" class="col s6">
         <div class="row">
             <div class="input-field col s12">
@@ -38,14 +40,14 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input id="movie_reviewdate" type="text" name="movie_reviewdate" class="datepicker">
+                <input id="movie_reviewdatedate" type="text" name="movie_reviewdate" class="datepicker" value={{movie.movie_reviewdate}}>
                 <label>Movie Review Date</label>
             </div>
         </div>
         <div class="row">
             <div class="switch">
                 <label>
-                    {% if movie.has_been_reviewed %}
+                    {% if movie.movie_has_been_reviewed %}
                           <input id="movie_has_been_reviewed" name="movie_has_been_reviewed" type="checkbox" checked>
                     {% else %}
                          <input id="movie_has_been_reviewed" name="movie_has_been_reviewed" type="checkbox">
@@ -64,4 +66,6 @@
                 <i class="material-icons right">playlist_add</i>
              </button>
         </div>
+    </div>
+    </div>
 {% endblock %}
