@@ -30,7 +30,6 @@
         </div>
         <h4 class="review_headings">Upcoming Movie Watch and Review Events:</h4><br>
         <ul class="collapsible">
-        console.log({{current_date}})
             {% for movie in movies %}
                 {% if movie.movie_reviewdate >= current_date %}  
                     <li>

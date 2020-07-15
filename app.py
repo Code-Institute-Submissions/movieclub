@@ -48,13 +48,15 @@ def admin_movie_update(movie_id):
 @app.route('/insert_admin_movie_update/<movie_id>', methods=['POST', 'GET'])
 def insert_admin_movie_update(movie_id):
     movies = mongo.db.movie_list
+    movie_reviewdate_str = request.form.get('movie_reviewdate')
+    movie_reviewdate_obj = datetime.strptime(movie_reviewdate_str, '%y/%m/%d')
     movies.update({'_id': ObjectId(movie_id)},
     {
         'movie_name': request.form.get('movie_name'),
         'movie_releasedate': request.form.get('movie_releasedate'),
         'movie_overview': request.form.get('movie_overview'),
         'movie_category': request.form.get('movie_category'),
-        'movie_reviewdate': request.form.get('movie_reviewdate'),
+        'movie_reviewdate': movie_reviewdate_obj,
         'movie_has_been_reviewed': request.form.get('movie_has_been_reviewed'),
         'movie_urls': request.form.get('movie_urls')
     })
