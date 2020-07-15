@@ -8,7 +8,7 @@ from datetime import date
 app = Flask(__name__)
 messages = []
 
-MONGODB_URI = os.environ.get('MONGODB_URI')
+MONGODB_URI = 'mongodb+srv://movieclub_movieadmin:tH6EujMCH87FZ3PI@cluster0-z3z20.mongodb.net/movieclub?retryWrites=true&w=majority'
 
 app.config["MONGO_URI"] = MONGODB_URI
 app.config["MONGO_DBNAME"] = 'movieclub'
