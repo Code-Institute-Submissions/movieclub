@@ -1,10 +1,10 @@
 $(document).ready(function () {
 
-    if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
     }
 
-    $("#addcomment_formfill").click(function() {
+    $("#addcomment_formfill").click(function () {
         var x = document.getElementById("addcomment_form");
         if (x.style.display === "none") {
             x.style.display = "block";
@@ -12,9 +12,9 @@ $(document).ready(function () {
             x.style.display = "none";
         }
         document.getElementById("movie_username").focus();
-    })
+    });
 
-    $("#addcategory_formfill").click(function() {
+    $("#addcategory_formfill").click(function () {
         var x = document.getElementById("addcategory_form");
         if (x.style.display === "none") {
             x.style.display = "block";
@@ -22,7 +22,7 @@ $(document).ready(function () {
             x.style.display = "none";
         }
         document.getElementById("category_name").focus();
-    })
+    });
 
     // Fixes for issue where new select options are not selectable
     // https://jsfiddle.net/KyleMit/1gxqhvpa/
@@ -30,29 +30,29 @@ $(document).ready(function () {
     $('.materialSelect').formSelect();
 
     // setup listener for custom event to re-initialize on change
-    $('.materialSelect').on('contentChanged', function() {
+    $('.materialSelect').on('contentChanged', function () {
     $(this).formSelect();
     });
 
-    function addmovieinfotoform(){
+    function addmovieinfotoform() {
 
         //The movie information is retrieved from the selected item in the select element dropdown list in the addmovie html page
         var movietoaddtodb = document.getElementById("movielistoutput").value;
 
         //The track details are extracked from the track information and the track id is used in an api request to the musixmatch site
         var movie_name = movietoaddtodb.split('>')[0];
-        movie_name = movie_name.trim()
+        movie_name = movie_name.trim();
         var movie_releasedate = movietoaddtodb.split('>')[1];
-        movie_releasedate = movie_releasedate.trim()
+        movie_releasedate = movie_releasedate.trim();
         var movie_overview = movietoaddtodb.split('>')[2];
-        movie_overview = movie_overview.trim()
+        movie_overview = movie_overview.trim();
         var add_movie_name = document.getElementById("movie_name")
         add_movie_name.value = movie_name;
-        var add_movie_releasedate = document.getElementById("movie_releasedate")
+        var add_movie_releasedate = document.getElementById("movie_releasedate");
         //movie_releasedate = movie_releasedate.substring(2);
         //movie_releasedate = movie_releasedate.replace(/-/g, "/");
         add_movie_releasedate.value = movie_releasedate;
-        var add_movie_overview = document.getElementById("movie_overview")
+        var add_movie_overview = document.getElementById("movie_overview");
         add_movie_overview.value = movie_overview;
         //Required to update the labels on the html page: Materialise documentation:
         //You can also call the function M.updateTextFields(); to reinitialize all the Materialize labels
@@ -70,16 +70,15 @@ $(document).ready(function () {
         //var searchURL = "https://api.themoviedb.org/3/search/movie?api_key=c9226110f1db771f2745ac5085bb78f1&query=ad%20astra";
         var searchURL = "https://api.themoviedb.org/3/search/movie?api_key=c9226110f1db771f2745ac5085bb78f1&query=" + searchcriteria;
         var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {     
+        xhr.onreadystatechange = function() {     
             if (this.readyState === 4 && this.status === 200 && this.responseText !== null) {
 
                 //JSON parse the text response from the musixmatch api
                 var x = (JSON.parse(this.responseText));
-                console.log(x);
                 callback(x);
                 }
             };
-        xhr.open("GET", searchURL, true); 
+        xhr.open("GET",searchURL,true); 
         xhr.send();
     }
 
