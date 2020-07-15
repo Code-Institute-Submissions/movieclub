@@ -18,15 +18,15 @@
             </button><br><br>
             <form action="{{ url_for('insert_movie') }}" method="POST">
                 <div class="input-field">
-                    <input id="movie_name" name="movie_name" type="text" class="validate">
+                    <input required id="movie_name" name="movie_name" type="text" class="validate">
                     <label for="movie_name">Movie Name</label>
                 </div>
                 <div class="input-field">
-                    <input id="movie_releasedate" type="text" name="movie_releasedate" class="datepicker">
+                    <input required id="movie_releasedate" type="text" name="movie_releasedate" class="datepicker">
                     <label>Movie Release Date</label>
                 </div> 
                 <div class="input-field">
-                    <input id="movie_overview" name="movie_overview" type="text" class="validate">
+                    <input required id="movie_overview" name="movie_overview" type="text" class="validate">
                     <label for="movie_overview">Movie overview</label>
                 </div>
                 <div class="input-field">

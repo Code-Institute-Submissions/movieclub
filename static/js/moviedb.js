@@ -49,6 +49,8 @@ $(document).ready(function () {
         var add_movie_name = document.getElementById("movie_name")
         add_movie_name.value = movie_name;
         var add_movie_releasedate = document.getElementById("movie_releasedate")
+        //movie_releasedate = movie_releasedate.substring(2);
+        //movie_releasedate = movie_releasedate.replace(/-/g, "/");
         add_movie_releasedate.value = movie_releasedate;
         var add_movie_overview = document.getElementById("movie_overview")
         add_movie_overview.value = movie_overview;

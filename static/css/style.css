@@ -23,3 +23,7 @@
     vertical-align: bottom;
     display: table-cell;
 }
+
+.highlight {
+    background-color: #fcff2e
+}

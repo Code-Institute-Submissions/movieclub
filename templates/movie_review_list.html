@@ -34,7 +34,9 @@
                 {% if movie.movie_reviewdate >= current_date %}  
                     <li>
                         <div class="collapsible-header">
-                                <i class="material-icons" >movie</i><span class="blue-text text-darken-2"><h6>{{movie.movie_name}} - {{movie.movie_releasedate}} - {{movie.movie_category}}</h6></span>
+                            <i class="material-icons" >movie</i>
+                            <span class="blue-text text-darken-2"><h6>{{movie.movie_reviewdate}}----------</h6></span>
+                            <span class="blue-text text-darken-2 highlight"><h6>  {{movie.movie_name}}  </h6></span>
                         </div>
                         <div class="collapsible-body">
                             <h5>Movie Overview:</h5><br>
@@ -60,7 +62,9 @@
                 {% if movie.movie_reviewdate < current_date %}     
                     <li>
                         <div class="collapsible-header">
-                            <i class="material-icons" >movie</i><span class="blue-text text-darken-2"><h6>{{movie.movie_name}} - {{movie.movie_releasedate}} - {{movie.movie_category}}</h6></span>
+                            <i class="material-icons" >movie</i>
+                            <span class="blue-text text-darken-2"><h6>{{movie.movie_reviewdate}}----------</h6></span>
+                            <span class="blue-text text-darken-2 highlight"><h6>  {{movie.movie_name}}  </h6></span>
                         </div>
                         <div class="collapsible-body">
                             <h5>Movie Overview:</h5></br>

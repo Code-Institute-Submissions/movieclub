@@ -3,22 +3,24 @@ from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import datetime
+from datetime import date
 
 app = Flask(__name__)
 messages = []
 
+MONGODB_URI = os.environ.get('MONGO_URI')
+
+app.config["MONGO_URI"] = MONGODB_URI
 app.config["MONGO_DBNAME"] = 'movieclub'
-app.config['MONGO_URI'] = 'mongodb+srv://movieclub_movieadmin:hneSNJhg44nImFeo@cluster0-z3z20.mongodb.net/movieclub?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE'
 
 mongo = PyMongo(app)
-
 
 @app.route('/')
 @app.route('/show_movie_review_list')
 def show_movie_review_list():
     current_date = datetime.now()
     movies = mongo.db.movie_list.find({"movie_reviewdate": {"$exists": True}}).sort("movie_reviewdate", -1)    
-    movies2 = mongo.db.movie_list.find({"movie_reviewdate": {"$exists": True}}).sort("movie_reviewdate", -1)    
+    movies2 = mongo.db.movie_list.find({"movie_reviewdate": {"$exists": True}}).sort("movie_reviewdate", -1)
     return render_template("movie_review_list.html", movies=movies, movies2=movies2, current_date=current_date)
 
 
@@ -49,7 +51,7 @@ def admin_movie_update(movie_id):
 def insert_admin_movie_update(movie_id):
     movies = mongo.db.movie_list
     movie_reviewdate_str = request.form.get('movie_reviewdate')
-    movie_reviewdate_obj = datetime.strptime(movie_reviewdate_str, '%y/%m/%d')
+    movie_reviewdate_obj = datetime.strptime(movie_reviewdate_str, '%Y-%m-%d')
     movies.update({'_id': ObjectId(movie_id)},
     {
         'movie_name': request.form.get('movie_name'),

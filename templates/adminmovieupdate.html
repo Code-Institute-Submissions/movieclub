@@ -7,19 +7,19 @@
     <form action="{{ url_for('insert_admin_movie_update', movie_id=movie._id) }}" method="POST" class="col s6">
         <div class="row">
             <div class="input-field col s12">
-                <input id="movie_name" name="movie_name" type="text" class="validate" value="{{movie.movie_name}}">
+                <input required id="movie_name" name="movie_name" type="text" class="validate" value="{{movie.movie_name}}">
                 <label for="movie_name">Movie Name</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input id="movie_releasedate" type="text" name="movie_releasedate" class="datepicker" value="{{movie.movie_releasedate}}">
+                <input required id="movie_releasedate" type="text" name="movie_releasedate" class="datepicker" value="{{movie.movie_releasedate}}">
                 <label>Movie Release Date</label>
             </div>
         </div>
                 <div class="row">
             <div class="input-field col s12">
-                <input id="movie_overview" name="movie_overview" type="text" class="validate" value="{{movie.movie_overview}}">
+                <input required id="movie_overview" name="movie_overview" type="text" class="validate" value="{{movie.movie_overview}}">
                 <label for="movie_overview">Movie overview</label>
             </div>
         </div>
@@ -48,9 +48,9 @@
             <div class="switch">
                 <label>
                     {% if movie.movie_has_been_reviewed %}
-                          <input id="movie_has_been_reviewed" name="movie_has_been_reviewed" type="checkbox" checked>
+                          <input required id="movie_has_been_reviewed" name="movie_has_been_reviewed" type="checkbox" checked>
                     {% else %}
-                         <input id="movie_has_been_reviewed" name="movie_has_been_reviewed" type="checkbox">
+                         <input required id="movie_has_been_reviewed" name="movie_has_been_reviewed" type="checkbox">
                     {% endif%}
                   <span class="lever"></span>
                   Has Been Reviewed
@@ -66,6 +66,7 @@
                 <i class="material-icons right">playlist_add</i>
              </button>
         </div>
-    </div>
-    </div>
+    </form>
+</div>
+</div>
 {% endblock %}
